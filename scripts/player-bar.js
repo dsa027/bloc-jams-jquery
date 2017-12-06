@@ -15,4 +15,16 @@
     if (idx < 0) { return; }
     player.playPause(album.songs[idx]);
   });
+  $('#time-control .seek-bar').on('input', function() {
+    player.skipTo(event.target.value);
+  });
+  setInterval(() => {
+    if (player.playState !== 'playing') { return; }
+    const currentTime = player.getTime();
+    const duration = player.getDuration();
+    const percentage = currentTime / duration * 100;
+    $('#time-control .seek-bar').val(percentage);
+    $('#time-control .current-time').text(Math.floor(currentTime));
+    $('#time-control .total-time').text(Math.floor(duration - currentTime));
+  }, 1000);
 }
