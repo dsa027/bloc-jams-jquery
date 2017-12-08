@@ -15,7 +15,7 @@
       `);
     song.element.on('click', event => {
       pb_state.idx = index;
-      pb_state.process_event($(this), play_pause);
+      pb_state.process_event($('button#play-pause'), play_pause);
     });
     $('#song-list').append(song.element);
   });

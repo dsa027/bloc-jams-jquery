@@ -5,3 +5,4 @@ const seek = "seek";
 const playing = "playing";
 const paused = "paused";
 const stopped = "stopped";
+const volume = "volume";

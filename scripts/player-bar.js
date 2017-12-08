@@ -45,6 +45,9 @@ class Player_Bar_State {
       case seek:
         return this.is_playing();
 
+      case volume:
+        return true;
+
       default:
         return false;
     };
@@ -65,6 +68,10 @@ class Player_Bar_State {
 
       case seek:
         player.skip_to(event.target.value);
+        break;
+
+      case volume:
+        player.set_volume(this.element.val());
         break;
     };
   }
@@ -121,4 +128,8 @@ $('button#previous').on('click', function() {
 
 $('#time-control .seek-bar').on('input', function() {
   pb_state.process_event($(this), seek);
+});
+
+$('#volume-control .seek-bar').on('input', function() {
+  pb_state.process_event($(this), volume);
 });
