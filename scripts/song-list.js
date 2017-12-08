@@ -14,8 +14,8 @@
       </tr>
       `);
     song.element.on('click', event => {
-      player.playPause(song);
-      $('button#play-pause').attr('playState', player.playState);
+      pb_state.idx = index;
+      pb_state.process_event($(this), play_pause);
     });
     $('#song-list').append(song.element);
   });
