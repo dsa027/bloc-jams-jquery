@@ -71,10 +71,6 @@ class Player_Bar_State {
       case volume:
         player.setVolume(this.element.val());
         break;
-
-      case volume:
-        player.set_volume(this.element.val());
-        break;
     };
   }
 
