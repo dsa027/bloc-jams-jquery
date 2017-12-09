@@ -6,20 +6,21 @@ class Player {
     this.soundObject = new buzz.sound(this.currentlyPlaying.soundFileUrl);
   }
 
-  get_duration() {
+  getDuration() {
     return this.soundObject.getDuration();
   }
 
-  get_time() {
+  getTime() {
     return this.soundObject.getTime();
   }
 
-  new_song(song) {
+  newSong(song) {
     return this.currentlyPlaying !== song;
   }
 
-  stop_song(song) {
-    $('#time-control .seek-bar').val(0);  // always start at the beginning of the song
+  stopSong(song) {
+    // put seek bar at 0
+    resetTimeControlSeekBar();
     // Stop the currently playing sound file (even if nothing is playing)
     this.soundObject.stop();
     // Clear classes on the song that's currently playing
@@ -31,37 +32,37 @@ class Player {
     this.soundObject = new buzz.sound(this.currentlyPlaying.soundFileUrl);
   }
 
-  play_song() {
+  playSong() {
     this.soundObject.setVolume( this.volume );
     this.soundObject.play();
     this.playState = playing;
     this.currentlyPlaying.element.removeClass(paused).addClass(playing);
   }
 
-  pause_song() {
+  pauseSong() {
     this.soundObject.pause();
     this.playState = paused;
     this.currentlyPlaying.element.removeClass(playing).addClass(paused);
   }
 
-  play_pause (song = this.currentlyPlaying) {
-    if (this.new_song(song)) {
-      this.stop_song(song);
+  playPause (song = this.currentlyPlaying) {
+    if (this.newSong(song)) {
+      this.stopSong(song);
     }
     if (this.playState === paused || this.playState === stopped) {
-      this.play_song();
+      this.playSong();
     }
     else {
-      this.pause_song();
+      this.pauseSong();
     }
   }
 
-  skip_to (percent) {
+  skipTo (percent) {
     if (this.playState !== playing) { return }
     this.soundObject.setTime( (percent / 100) * this.soundObject.getDuration() );
   }
 
-  set_volume (percent) {
+  setVolume (percent) {
     this.volume = percent;
     this.soundObject.setVolume(percent);
   }
