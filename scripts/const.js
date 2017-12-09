@@ -1,6 +1,6 @@
 const prev = "prev";
 const next = "next";
-const play_pause = "play-pause";
+const playPause = "play-pause";
 const seek = "seek";
 const playing = "playing";
 const paused = "paused";
