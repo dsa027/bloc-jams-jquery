@@ -6,20 +6,10 @@
     const duration = player.getDuration();
     const percentage = currentTime / duration * 100;
     $('#time-control .seek-bar').val(percentage);
-    $('#time-control .current-time').text(this.formatTime(currentTime));
-    $('#time-control .total-time').text("-" + this.formatTime(duration - currentTime));
+    $('#time-control .current-time').text(buzz.toTimer(currentTime));
+    $('#time-control .total-time').text("-" + buzz.toTimer(duration - currentTime));
   },
     1000);
-
-  function formatTime(seconds) {
-    seconds = Math.floor(seconds);  // make sure it's not a fraction
-    var date = new Date(null);      // empty date
-    date.setSeconds(seconds);       // date from seconds
-    date = date.toISOString();      // full ISO date
-    const time = date.substr(14, 5);// show only minutes:seconds
-
-    return time;
-  }
 
   function resetTimeControlSeekBar() {
     $('#time-control .seek-bar').val(0);
